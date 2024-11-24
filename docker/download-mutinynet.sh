@@ -3,7 +3,7 @@
 # You can download and run it with: curl -sSL https://raw.githubusercontent.com/fedimint/fedimint/master/docker/download-mutinynet.sh | bash
 
 DOCKER_COMPOSE=docker-compose
-if docker compose version|grep 'Docker Compose' >& /dev/null; then
+if docker compose version 2>/dev/null |grep 'Docker Compose' >& /dev/null; then
   DOCKER_COMPOSE="docker compose"
 elif ! [ -x "$(command -v docker-compose)" ]; then
   # check if we are running as root
@@ -61,13 +61,16 @@ replace_external_ip() {
 }
 
 read -p "Do you want to install fedimintd? [Y/n] " -n 1 -r -a fedimintd_install < /dev/tty
+echo
 if [[ ${fedimintd_install[*]} =~ ^[Yy]?$ ]]; then
   mkdir -p $FEDIMINTD_DIR
-  download https://raw.githubusercontent.com/fedimint/fedimint/master/docker/${FEDIMINT_VERSION}/fedimintd-mutinynet/docker-compose.yaml $FEDIMINTD_DIR/docker-compose.yaml
+  # download https://raw.githubusercontent.com/fedimint/fedimint/master/docker/${FEDIMINT_VERSION}/fedimintd-mutinynet/docker-compose.yaml $FEDIMINTD_DIR/docker-compose.yaml
+  download https://raw.githubusercontent.com/frankhinek/fedimint/refs/heads/docker-v0.4.4/docker/0.4.4/fedimintd-mutinynet/docker-compose.yaml $FEDIMINTD_DIR/docker-compose.yaml
   replace_external_ip $FEDIMINTD_DIR/docker-compose.yaml
 fi
 
 read -p "Do you want to install the LN gateway? [Y/n] " -n 1 -r -a gateway_install < /dev/tty
+echo
 if [[ ${gateway_install[*]} =~ ^[Yy]?$ ]]; then
   # ask the user for the gateway password
   DEFAULT_GATEWAY_PASSWORD=thereisnosecondbest
