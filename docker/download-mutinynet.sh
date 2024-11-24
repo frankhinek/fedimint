@@ -78,7 +78,8 @@ if [[ ${gateway_install[*]} =~ ^[Yy]?$ ]]; then
     gateway_password=$DEFAULT_GATEWAY_PASSWORD
   fi
   mkdir -p $GATEWAY_DIR
-  download https://raw.githubusercontent.com/fedimint/fedimint/master/docker/${FEDIMINT_VERSION}/gateway-mutinynet/docker-compose.yaml $GATEWAY_DIR/docker-compose.yaml
+  # download https://raw.githubusercontent.com/fedimint/fedimint/master/docker/${FEDIMINT_VERSION}/gateway-mutinynet/docker-compose.yaml $GATEWAY_DIR/docker-compose.yaml
+  download https://raw.githubusercontent.com/frankhinek/fedimint/refs/heads/docker-v0.4.4/docker/0.4.4/gateway-mutinynet/docker-compose.yaml $GATEWAY_DIR/docker-compose.yaml
   replace_external_ip $GATEWAY_DIR/docker-compose.yaml
   sed -i "s/$DEFAULT_GATEWAY_PASSWORD/$gateway_password/g" $GATEWAY_DIR/docker-compose.yaml
 fi
