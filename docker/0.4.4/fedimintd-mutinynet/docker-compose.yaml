@@ -10,6 +10,7 @@ services:
       - "0.0.0.0:8173:8173"
       - "0.0.0.0:8174:8174"
     environment:
+      - FM_REL_NOTES_ACK=0_4_xyz 
       - FM_BITCOIN_RPC_KIND=esplora
       - FM_BITCOIN_RPC_URL=https://mutinynet.com/api/
       - FM_BITCOIN_NETWORK=signet
@@ -40,4 +41,4 @@ volumes:
 
 # Example of running it without docker compose:
 # docker run -it -e FM_REL_NOTES_ACK=0_4_xyz -e FM_BITCOIN_RPC_KIND=esplora -e FM_BITCOIN_RPC_URL=https://mutinynet.com/api/ -e FM_BIND_P2P=0.0.0.0:8173 -e FM_P2P_URL=fedimint://127.0.0.1:8173 -e FM_BIND_API=0.0.0.0:8174 -e FM_API_URL=ws://127.0.0.1:8174 -p 0.0.0.0:8173:8173 -p 0.0.0.0:8174:8174 fedimint/fedimintd:v0.4.4
-# docker run -e REACT_APP_FM_CONFIG_API="ws://127.0.0.1:8174" -it fedimintui/guardian-ui:0.4.2
+# docker run -it -e REACT_APP_FM_CONFIG_API="ws://127.0.0.1:8174" -p 0.0.0.0:3000:3000 fedimintui/guardian-ui:0.4.2
