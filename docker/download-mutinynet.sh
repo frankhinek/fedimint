@@ -36,7 +36,6 @@ if ! [ -x "$(command -v curl)" ]; then
   exit 1
 fi
 
-
 download() {
   local url=$1
   local path=$2
